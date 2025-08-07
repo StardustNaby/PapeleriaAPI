@@ -13,8 +13,9 @@ services:
   - type: web
     name: papeleria-frontend
     env: node
-    buildCommand: cd papeleria-main && npm install && npm run build && cd ..
-    startCommand: cd papeleria-main && npm run preview
+    buildCommand: npm install && npx vite build
+    startCommand: npx vite preview
+    rootDirectory: papeleria-main
     envVars:
       - key: NODE_ENV
         value: production
