@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: papeleria-api
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false # This will be set manually in Render dashboard

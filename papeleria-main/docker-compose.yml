@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=papeleria_user
+      - MYSQL_PASSWORD=papeleria_pass
+      - MYSQL_DATABASE=papeleria_db
+      - MYSQL_PORT=3306
+      - PORT=3001
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./logs:/app/logs
+      - ./uploads:/app/uploads
+    restart: unless-stopped
+    networks:
+      - papeleria-network
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=papeleria_db
+      - MYSQL_USER=papeleria_user
+      - MYSQL_PASSWORD=papeleria_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./Database:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    restart: unless-stopped
+    networks:
+      - papeleria-network
+
+  # Servicio opcional para desarrollo
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_HOST=mysql
+      - PMA_USER=papeleria_user
+      - PMA_PASSWORD=papeleria_pass
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    networks:
+      - papeleria-network
+
+volumes:
+  mysql_data:
+
+networks:
+  papeleria-network:
+    driver: bridge 

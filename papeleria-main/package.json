@@ -1,0 +1,73 @@
+{
+  "name": "papeleria-pro",
+  "version": "1.0.0",
+  "description": "Sistema de gestión profesional para papelería",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "vite",
+    "dev:full": "concurrently \"npm run server\" \"npm run dev\"",
+    "build": "vite build",
+    "preview": "vite preview",
+    "server": "node server.js",
+    "build:start": "npm run build && npm start",
+    "prod": "NODE_ENV=production node server.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src --ext .js,.jsx",
+    "lint:fix": "eslint src --ext .js,.jsx --fix",
+    "format": "prettier --write \"src/**/*.{js,jsx,css,md}\"",
+    "docker:build": "docker build -t papeleria-pro .",
+    "docker:run": "docker run -p 3001:3001 papeleria-pro"
+  },
+  "keywords": [
+    "papeleria",
+    "inventario",
+    "ventas",
+    "mysql",
+    "nodejs",
+    "react"
+  ],
+  "author": "Julio Manuel",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.11.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.6.0",
+    "node-fetch": "^3.3.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^9.2.0",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "postcss": "^8.4.32",
+    "prettier": "^3.1.0",
+    "tailwindcss": "^3.3.6",
+    "vite": "^5.0.8"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
