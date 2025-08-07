@@ -29,9 +29,39 @@ app.use('/api/productos', productoRoutes);
 app.use('/api/ventas', ventaRoutes);
 app.use('/api/compras', compraRoutes);
 
-// Ruta de prueba
+// Ruta de inicio con documentación de endpoints
 app.get('/', (req, res) => {
-    res.json({ message: 'API de Papelería funcionando correctamente' });
+    res.json({
+        message: 'API de Papelería funcionando correctamente',
+        endpoints: {
+            proveedores: {
+                GET: '/api/proveedores - Obtener todos los proveedores',
+                POST: '/api/proveedores - Crear un nuevo proveedor',
+                GET_ONE: '/api/proveedores/:id - Obtener un proveedor específico',
+                PUT: '/api/proveedores/:id - Actualizar un proveedor',
+                DELETE: '/api/proveedores/:id - Eliminar un proveedor'
+            },
+            productos: {
+                GET: '/api/productos - Obtener todos los productos',
+                POST: '/api/productos - Crear un nuevo producto',
+                GET_ONE: '/api/productos/:id - Obtener un producto específico',
+                PUT: '/api/productos/:id - Actualizar un producto',
+                DELETE: '/api/productos/:id - Eliminar un producto'
+            },
+            ventas: {
+                GET: '/api/ventas - Obtener todas las ventas',
+                POST: '/api/ventas - Crear una nueva venta',
+                GET_ONE: '/api/ventas/:id - Obtener una venta específica',
+                PATCH: '/api/ventas/:id/estado - Actualizar estado de una venta'
+            },
+            compras: {
+                GET: '/api/compras - Obtener todas las compras',
+                POST: '/api/compras - Crear una nueva compra',
+                GET_ONE: '/api/compras/:id - Obtener una compra específica',
+                PATCH: '/api/compras/:id/estado - Actualizar estado de una compra'
+            }
+        }
+    });
 });
 
 // Manejo de errores
