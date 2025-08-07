@@ -13,7 +13,7 @@ services:
   - type: web
     name: papeleria-frontend
     env: node
-    buildCommand: npm install && npx vite build
+    buildCommand: npm install; npx vite build
     startCommand: npx vite preview
     rootDirectory: papeleria-main
     envVars:
