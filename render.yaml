@@ -9,3 +9,14 @@ services:
         value: production
       - key: MONGODB_URI
         sync: false # This will be set manually in Render dashboard
+
+  - type: web
+    name: papeleria-frontend
+    env: node
+    buildCommand: cd papeleria-main && npm install && npm run build
+    startCommand: cd papeleria-main && npm run preview
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: VITE_API_URL
+        value: https://papeleriaapi.onrender.com
